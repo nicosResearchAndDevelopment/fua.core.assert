@@ -104,5 +104,10 @@ assert.array = function (value, checkFn, min = 0, max = Number.MAX_SAFE_INTEGER)
     if (value > max) util.throwError(assert.array, Error, 'expected to have maximum length of ' + max);
 };
 
+assert.todo = function (errMsg = 'not implemented') {
+    util.throwError(assert.todo, Error, errMsg);
+};
+
+
 util.sealModule(assert);
 module.exports = assert;
