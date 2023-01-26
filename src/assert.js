@@ -1,5 +1,4 @@
-const
-    util = require('./util.js');
+const util = require('./util.js');
 
 /**
  * @param {unknown} value
@@ -7,7 +6,7 @@ const
  * @param {typeof Error} [ErrType=Error]
  * @returns {asserts value}
  */
-const assert = function assert(value, errMsg = '', ErrType = Error) {
+const assert = function (value, errMsg = '', ErrType = Error) {
     if (!value) util.throwError(assert, ErrType, errMsg);
 };
 
@@ -15,7 +14,7 @@ const assert = function assert(value, errMsg = '', ErrType = Error) {
  * @param {unknown} value
  * @returns {asserts value is boolean}
  */
-assert.boolean = function assertBoolean(value) {
+assert.boolean = function (value) {
     if (typeof value !== 'boolean') util.throwError(assert.number, TypeError, 'expected to be a boolean');
 };
 
@@ -25,7 +24,7 @@ assert.boolean = function assertBoolean(value) {
  * @param {number} [max=Infinity]
  * @returns {asserts value is number}
  */
-assert.number = function assertNumber(value, min = -Infinity, max = Infinity) {
+assert.number = function (value, min = -Infinity, max = Infinity) {
     if (typeof value !== 'number') util.throwError(assert.number, TypeError, 'expected to be a number');
     if (value < min) util.throwError(assert.number, Error, 'expected to be at minimum ' + min);
     if (value > max) util.throwError(assert.number, Error, 'expected to be at maximum ' + max);
@@ -37,7 +36,7 @@ assert.number = function assertNumber(value, min = -Infinity, max = Infinity) {
  * @param {number} [max=Number.MAX_SAFE_INTEGER]
  * @returns {asserts value is number}
  */
-assert.number.integer = function assertInteger(value, min = Number.MIN_SAFE_INTEGER, max = Number.MAX_SAFE_INTEGER) {
+assert.number.integer = function (value, min = Number.MIN_SAFE_INTEGER, max = Number.MAX_SAFE_INTEGER) {
     if (typeof value !== 'number') util.throwError(assert.number.integer, TypeError, 'expected to be a number');
     if (!Number.isInteger(value)) util.throwError(assert.number.integer, TypeError, 'expected to be an integer');
     if (value < min) util.throwError(assert.number.integer, Error, 'expected to be at minimum ' + min);
@@ -51,7 +50,7 @@ assert.number.integer = function assertInteger(value, min = Number.MIN_SAFE_INTE
  * @param {number} [max=Number.MAX_SAFE_INTEGER]
  * @returns {asserts value is string}
  */
-assert.string = function assertString(value, pattern, min = 0, max = Number.MAX_SAFE_INTEGER) {
+assert.string = function (value, pattern, min = 0, max = Number.MAX_SAFE_INTEGER) {
     if (typeof value !== 'string') util.throwError(assert.string, TypeError, 'expected to be a string');
     if (pattern && !pattern.test(value)) util.throwError(assert.string, Error, 'expected to match pattern ' + pattern);
     if (value.length < min) util.throwError(assert.string, Error, 'expected to have minimum length of ' + min);
@@ -62,7 +61,7 @@ assert.string = function assertString(value, pattern, min = 0, max = Number.MAX_
  * @param {unknown} value
  * @returns {asserts value is function}
  */
-assert.function = function assertFunction(value) {
+assert.function = function (value) {
     if (typeof value !== 'function') util.throwError(assert.function, TypeError, 'expected to be a function');
 };
 
@@ -71,7 +70,7 @@ assert.function = function assertFunction(value) {
  * @param {{[key: string]: (value: unknown, key: string) => boolean}} [checkObj]
  * @returns {asserts value is object}
  */
-assert.object = function assertObject(value, checkObj) {
+assert.object = function (value, checkObj) {
     if (value && typeof value !== 'object') util.throwError(assert.object, TypeError, 'expected to be an object');
     if (checkObj) {
         for (const [key, checkFn] of Object.entries(checkObj)) {
@@ -85,7 +84,7 @@ assert.object = function assertObject(value, checkObj) {
  * @param {...Function} classFns
  * @returns {asserts value is object}
  */
-assert.instance = function assertInstance(value, ...classFns) {
+assert.instance = function (value, ...classFns) {
     if (!classFns.some(classFn => value instanceof classFn))
         util.throwError(assert.instance, TypeError, 'expected to be instance of ' + classFns.map(classFn => classFn.name).join(' or '));
 };
@@ -96,7 +95,7 @@ assert.instance = function assertInstance(value, ...classFns) {
  * @param {number} [min=0]
  * @param {number} [max=Number.MAX_SAFE_INTEGER]
  */
-assert.array = function assertArray(value, checkFn, min = 0, max = Number.MAX_SAFE_INTEGER) {
+assert.array = function (value, checkFn, min = 0, max = Number.MAX_SAFE_INTEGER) {
     if (!Array.isArray(value)) util.throwError(assert.array, TypeError, 'expected to be an array')
     if (checkFn) for (let i = 0; i < value.length; i++) {
         if (!checkFn(value[i], i)) util.throwError(assert.array, Error, 'expected entry [' + i + '] is invalid');
