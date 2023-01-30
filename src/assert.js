@@ -12,6 +12,14 @@ const assert = function (value, errMsg = '', ErrType = Error) {
 
 /**
  * @param {unknown} value
+ * @returns {asserts value is !undefined}
+ */
+assert.defined = function (value) {
+    if (typeof value === 'undefined') util.throwError(assert.defined, TypeError, 'expected to be defined');
+};
+
+/**
+ * @param {unknown} value
  * @returns {asserts value is boolean}
  */
 assert.boolean = function (value) {
