@@ -53,8 +53,12 @@ assert.number.integer = function (value, min = Number.MIN_SAFE_INTEGER, max = Nu
 assert.string = function (value, pattern, min = 0, max = Number.MAX_SAFE_INTEGER) {
     if (typeof value !== 'string') util.throwError(assert.string, TypeError, 'expected to be a string');
     if (pattern && !pattern.test(value)) util.throwError(assert.string, Error, 'expected to match pattern ' + pattern);
-    if (value.length < min) util.throwError(assert.string, Error, 'expected to have minimum length of ' + min);
-    if (value > max) util.throwError(assert.string, Error, 'expected to have maximum length of ' + max);
+    if (min === max) {
+        if (value.length !== min) util.throwError(assert.string, Error, 'expected to have length of ' + min);
+    } else {
+        if (value.length < min) util.throwError(assert.string, Error, 'expected to have minimum length of ' + min);
+        if (value.length > max) util.throwError(assert.string, Error, 'expected to have maximum length of ' + max);
+    }
 };
 
 /**
@@ -100,8 +104,12 @@ assert.array = function (value, checkFn, min = 0, max = Number.MAX_SAFE_INTEGER)
     if (checkFn) for (let i = 0; i < value.length; i++) {
         if (!checkFn(value[i], i)) util.throwError(assert.array, Error, 'expected entry [' + i + '] is invalid');
     }
-    if (value.length < min) util.throwError(assert.array, Error, 'expected to have minimum length of ' + min);
-    if (value > max) util.throwError(assert.array, Error, 'expected to have maximum length of ' + max);
+    if (min === max) {
+        if (value.length !== min) util.throwError(assert.array, Error, 'expected to have length of ' + min);
+    } else {
+        if (value.length < min) util.throwError(assert.array, Error, 'expected to have minimum length of ' + min);
+        if (value.length > max) util.throwError(assert.array, Error, 'expected to have maximum length of ' + max);
+    }
 };
 
 assert.todo = function (errMsg = 'not implemented') {
