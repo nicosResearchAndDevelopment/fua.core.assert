@@ -71,6 +71,11 @@ assert.string = function (value, pattern, min = 0, max = Number.MAX_SAFE_INTEGER
 
 const identifierStringPattern = /^\S+$/;
 
+/**
+ * @param {unknown} value
+ * @param {RegExp} [pattern]
+ * @returns {asserts value is string}
+ */
 assert.string.identifier = function (value, pattern) {
     if (typeof value !== 'string') util.throwError(assert.string.identifier, TypeError, 'expected to be a string');
     if(!identifierStringPattern.test(value)) util.throwError(assert.string.identifier, TypeError, 'expected to be an identifier');
