@@ -3,15 +3,19 @@
   "version": "2.0.0",
   "description": "",
   "main": "src/assert.js",
+  "types": "types/assert.d.ts",
   "files": [
     "src/*"
   ],
   "devDependencies": {
     "expect": "26.x",
-    "mocha": "10.x"
+    "mocha": "10.x",
+    "typescript": "4.x"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "generate-dts": "tsc src/assert.js --allowJS --declaration --emitDeclarationOnly --outDir types",
+    "generate-bundle-dts": "tsc src/assert.js --allowJS --declaration --emitDeclarationOnly --outFile types/bundle.d.ts"
   },
   "mocha": {
     "bail": false,
