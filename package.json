@@ -9,8 +9,7 @@
   ],
   "devDependencies": {
     "expect": "26.x",
-    "mocha": "10.x",
-    "typescript": "4.x"
+    "mocha": "10.x"
   },
   "scripts": {
     "test": "mocha",
