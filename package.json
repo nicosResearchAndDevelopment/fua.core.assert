@@ -12,9 +12,7 @@
     "mocha": "10.x"
   },
   "scripts": {
-    "test": "mocha",
-    "generate-dts": "tsc src/assert.js --allowJS --declaration --emitDeclarationOnly --outDir types",
-    "generate-bundle-dts": "tsc src/assert.js --allowJS --declaration --emitDeclarationOnly --outFile types/bundle.d.ts"
+    "test": "mocha"
   },
   "mocha": {
     "bail": false,
