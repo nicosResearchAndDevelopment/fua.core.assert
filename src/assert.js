@@ -78,7 +78,7 @@ const identifierStringPattern = /^\S+$/;
  */
 assert.string.identifier = function (value, pattern) {
     if (typeof value !== 'string') util.throwError(assert.string.identifier, TypeError, 'expected to be a string');
-    if(!identifierStringPattern.test(value)) util.throwError(assert.string.identifier, TypeError, 'expected to be an identifier');
+    if (!identifierStringPattern.test(value)) util.throwError(assert.string.identifier, TypeError, 'expected to be an identifier');
     if (pattern && !pattern.test(value)) util.throwError(assert.string.identifier, Error, 'expected to match pattern ' + pattern);
 };
 
@@ -92,13 +92,16 @@ assert.function = function (value) {
 
 /**
  * @param {unknown} value
- * @param {{[key: string]: (value: unknown, key: string) => boolean}} [checkObj]
+ * @param {{[key: string]: (value: unknown, key: string) => boolean} | function (value: unknown, key: string): boolean} [checkObj]
  * @returns {asserts value is object}
  */
 assert.object = function (value, checkObj) {
     if (value && typeof value !== 'object') util.throwError(assert.object, TypeError, 'expected to be an object');
     if (checkObj) {
-        for (const [key, checkFn] of Object.entries(checkObj)) {
+        const fnCheck = typeof checkObj === 'function';
+        const keys    = fnCheck ? Object.keys(value) : Object.keys(checkObj);
+        for (const key of keys) {
+            const checkFn = fnCheck ? checkObj : checkObj[key];
             if (!checkFn(value[key], key)) util.throwError(assert.object, Error, 'expected entry "' + key + '" is invalid');
         }
     }
@@ -136,7 +139,6 @@ assert.array = function (value, checkFn, min = 0, max = Number.MAX_SAFE_INTEGER)
 assert.todo = function (errMsg = 'not implemented') {
     util.throwError(assert.todo, Error, errMsg);
 };
-
 
 util.sealModule(assert);
 module.exports = assert;
