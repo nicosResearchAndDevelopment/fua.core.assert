@@ -1,5 +1,7 @@
 const util = require('./util.js');
 
+// TODO rethink and maybe rework, if there is a better approach
+
 /**
  * @param {function (value: unknown): boolean} checker
  * @returns {function (value: unknown): boolean}
