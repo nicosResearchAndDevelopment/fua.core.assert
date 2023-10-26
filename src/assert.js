@@ -140,7 +140,5 @@ assert.todo = function (errMsg = 'not implemented') {
     util.throwError(assert.todo, Error, errMsg);
 };
 
-assert.validator = require('./assert.validator.js');
-
 util.sealModule(assert);
 module.exports = assert;

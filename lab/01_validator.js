@@ -1,4 +1,14 @@
-const util = require('./util.js');
+const util = {
+    isNull:          (value) => (value ?? null) === null,
+    isArray:         (value) => Array.isArray(value),
+    isRegExp:        (value) => value instanceof RegExp,
+    isFunction:      (value) => typeof value === 'function',
+    isFunctionArray: (value) => util.isArray(value) && value.every(util.isFunction),
+    Datatypes:       ['undefined', 'boolean', 'number', 'bigint', 'string', 'symbol', 'object', 'function'],
+    isDatatype:      (value) => util.Datatypes.includes(value),
+    isString:        (value) => typeof value === 'string',
+    isBoolean:       (value) => typeof value === 'boolean'
+};
 
 // TODO rethink and maybe rework, if there is a better approach
 
