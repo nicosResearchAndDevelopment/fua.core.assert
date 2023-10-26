@@ -1,9 +1,10 @@
 const inspector = function (validate) {
     return function inspect(value) {
         try {
-            validate(value);
+            const pass = !!validate(value);
+            return {pass, message: () => 'invalid value'};
         } catch (err) {
-            return err;
+            return {pass: false, message: () => err.message};
         }
     };
 };
