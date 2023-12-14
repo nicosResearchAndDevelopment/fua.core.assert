@@ -96,7 +96,7 @@ assert.function = function (value) {
  * @returns {asserts value is object}
  */
 assert.object = function (value, checkObj) {
-    if (value && typeof value !== 'object') util.throwError(assert.object, TypeError, 'expected to be an object');
+    if (!value || typeof value !== 'object') util.throwError(assert.object, TypeError, 'expected to be an object');
     if (checkObj) {
         const fnCheck = typeof checkObj === 'function';
         const keys    = fnCheck ? Object.keys(value) : Object.keys(checkObj);
