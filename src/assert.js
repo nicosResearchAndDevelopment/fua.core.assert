@@ -136,8 +136,12 @@ assert.array = function (value, checkFn, min = 0, max = Number.MAX_SAFE_INTEGER)
     }
 };
 
+class ToDoError extends Error {
+    name = 'TODO';
+}
+
 assert.todo = function (errMsg = 'not implemented') {
-    util.throwError(assert.todo, Error, errMsg);
+    util.throwError(assert.todo, ToDoError, errMsg);
 };
 
 util.sealModule(assert);
