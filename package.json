@@ -1,6 +1,6 @@
 {
   "name": "@fua/core.assert",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Assertion functions help to easily validate the expected type of values. It is best used in cases where input arguments must be reliable and any deviation should cause an error.",
   "main": "src/assert.js",
   "files": [
@@ -22,6 +22,6 @@
     "type": "git",
     "url": "ssh://git@github.com:nicosResearchAndDevelopment/fua.core.assert.git"
   },
-  "author": "Simon Petrac",
+  "author": "Simon Petrac <pfoerdie@gmail.com>",
   "license": "MIT"
 }
