@@ -1,1 +1,1 @@
-# fua.core.assert
+# @fua/core.assert

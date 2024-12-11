@@ -1,7 +1,7 @@
 {
-  "name": "@nicosResearchAndDevelopment/fua.core.assert",
+  "name": "@fua/core.assert",
   "version": "1.0.2",
-  "description": "",
+  "description": "Assertion functions help to easily validate the expected type of values. It is best used in cases where input arguments must be reliable and any deviation should cause an error.",
   "main": "src/assert.js",
   "files": [
     "src/*"
